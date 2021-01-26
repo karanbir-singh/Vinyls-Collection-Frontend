@@ -1,0 +1,10 @@
+.get-post-btn{
+    pointer-events: none;
+    margin-right: 10px;
+}
+
+.alert-span{
+    color: black;
+    font-size: large;
+    font-style: italic;
+}
