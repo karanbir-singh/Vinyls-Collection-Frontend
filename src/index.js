@@ -8,7 +8,11 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { AuthorsList } from "./components/AuthorsList";
+import { GenresList } from "./components/GenresList";
 import { Home } from "./components/Home";
+import { Vinyl } from "./components/Vinyl";
+import { VinylsList } from "./components/VinylsList";
 import "./styles.css";
 
 // App's root element
@@ -18,6 +22,18 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/vinyls/:id">
+          <Vinyl />
+        </Route>
+        <Route path="/vinyls">
+          <VinylsList />
+        </Route>
+        <Route path="/authors">
+          <AuthorsList />
+        </Route>
+        <Route path="/genres">
+          <GenresList />
+        </Route>
         <Route path="/">
           <Home />
         </Route>

@@ -3,19 +3,19 @@ import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles.css";
 
-export function GenresList() {
-    const [genres, setGenres] = useState([]);
+export function Vinyl() {
+    const [vinyl, setVinyl] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/genres")
+        fetch("http://localhost:3000/vinyls/")
             .then(res => res.json())
-            .then(body => setGenres(body));
+            .then(body => setVinyl(body));
     }, []);
 
     return (
         <>
-            <h1>Elenco vinili</h1>
-            <pre>{JSON.stringify(genres, null, 2)}</pre>
+            <h1>Vinile</h1>
+            <pre>{JSON.stringify(vinyl, null, 2)}</pre>
         </>
     );
 }

@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles.css";
-import { Alert, Button } from "react-bootstrap";
+import { Alert, Button, Dropdown } from "react-bootstrap";
 
-const possibilities = [
+const GETs = [
     {
         method: "GET",
         uri: "/vinyls",
@@ -19,7 +19,10 @@ const possibilities = [
         method: "GET",
         uri: "/genres",
         variant: "success"
-    },
+    }
+]
+
+const specialGETs = [
     {
         method: "GET",
         uri: "/vinyls/:id",
@@ -34,7 +37,10 @@ const possibilities = [
         method: "GET",
         uri: "/genres/:id/vinyls",
         variant: "success"
-    },
+    }
+]
+
+const POSTs = [
     {
         method: "POST",
         uri: "/vinyls",
@@ -49,22 +55,55 @@ const possibilities = [
         method: "POST",
         uri: "/genres",
         variant: "info"
-    },
+    }
 ]
 
 export function Home(props) {
     return (
         <div style={{ display: "inline-block", margin: "10px" }}>
             {
-                possibilities.map((req) => {
-                    return (<Alert variant={req.variant}>
-                        <Button className="get-post-btn" variant={req.variant}>{req.method}</Button>
-                        <span className="alert-span">{req.uri}</span>
-                        <Button style={{ float: "right", marginLeft: "80px" }} variant={"outline-" + req.variant}>{req.method}</Button>
-                    </Alert>);
-                })
+                GETs.map((req, index) => { return (<BasicAlert req={req} index={index} />) })
             }
+            {
+                specialGETs.map((req, index) => { return (<SpecialGETAlert req={req} index={index} />) })
+            }
+            {
+                POSTs.map((req, index) => { return (<SpecialPOSTAlert req={req} index={index} />) })
+            }
+
         </div>
 
     );
+}
+
+//GET request
+function BasicAlert(props) {
+    return (<Alert key={props.index} variant={props.req.variant}>
+        <Button className="get-post-btn" variant={props.req.variant}>{props.req.method}</Button>
+        <span className="alert-span">{props.req.uri}</span>
+        <Button onClick={() => window.location.href = "http://localhost:1234" + props.req.uri}
+            style={{ float: "right", marginLeft: "80px" }}
+            variant={"outline-" + props.req.variant}>Try out</Button>
+    </Alert>);
+}
+
+//GET request
+function SpecialGETAlert(props) {
+    return (<Alert key={props.index} variant={props.req.variant}>
+        <Button className="get-post-btn" variant={props.req.variant}>{props.req.method}</Button>
+        <span className="alert-span">{props.req.uri}</span>
+        <Button onClick={() => window.location.href = "http://localhost:1234" + props.req.uri}
+            style={{ float: "right", marginLeft: "80px" }}
+            variant={"outline-" + props.req.variant}>Try out</Button>
+    </Alert>);
+}
+
+function SpecialPOSTAlert(props) {
+    return (<Alert key={props.index} variant={props.req.variant}>
+        <Button className="get-post-btn" variant={props.req.variant}>{props.req.method}</Button>
+        <span className="alert-span">{props.req.uri}</span>
+        <Button onClick={() => window.location.href = "http://localhost:1234" + props.req.uri}
+            style={{ float: "right", marginLeft: "80px" }}
+            variant={"outline-" + props.req.variant}>Try out</Button>
+    </Alert>);
 }
