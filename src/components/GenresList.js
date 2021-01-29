@@ -14,7 +14,7 @@ export function GenresList() {
 
     return (
         <>
-            <h1>Elenco vinili</h1>
+            <h2>Elenco vinili</h2>
             <pre>{JSON.stringify(genres, null, 2)}</pre>
         </>
     );

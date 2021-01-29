@@ -14,7 +14,7 @@ export function AuthorsList() {
 
     return (
         <>
-            <h1>Elenco autori</h1>
+            <h2>Elenco autori</h2>
             <pre>{JSON.stringify(authors, null, 2)}</pre>
         </>
     );

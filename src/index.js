@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
@@ -11,6 +11,8 @@ import { GenresList } from "./components/GenresList";
 import { Home } from "./components/Home";
 import { Vinyl } from "./components/Vinyl";
 import { VinylsList } from "./components/VinylsList";
+import { AuthorVinyls } from "./components/AuthorVinyls"
+import { GenreVinyls } from "./components/GenreVinyls"
 import "./styles.css";
 
 // App's root element
@@ -20,7 +22,9 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/vinyls/:id" component={Vinyl} />
+        <Route path="/genres/:id/vinyls" children={<GenreVinyls />} />
+        <Route path="/authors/:id/vinyls" children={<AuthorVinyls />} />
+        <Route path="/vinyls/:id" children={<Vinyl />} />
         <Route path="/vinyls">
           <VinylsList />
         </Route>
