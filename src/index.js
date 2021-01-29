@@ -1,5 +1,3 @@
-// Copyright © 2020 Singh Karanbir. All rights riserved.
-
 import React, { useReducer, createContext } from "react";
 import ReactDOM from "react-dom";
 import {

@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles.css";
 
-export function Vinyl() {
-    const [vinyl, setVinyl] = useState([]);
+export function VinylsList() {
+    const [vinyls, setVinyls] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:3000/vinyls")
             .then(res => res.json())
-            .then(body => setVinyl(body));
+            .then(body => setVinyls(body));
     }, []);
 
     return (
         <>
-            <h1>Vinile</h1>
-            <pre>{JSON.stringify(vinyl, null, 2)}</pre>
+            <h1>Elenco vinili</h1>
+            <pre>{JSON.stringify(vinyls, null, 2)}</pre>
         </>
     );
 }
