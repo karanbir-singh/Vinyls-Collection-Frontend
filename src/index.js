@@ -22,9 +22,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/vinyls/:id">
-          <Vinyl />
-        </Route>
+        <Route path="/vinyls/:id" component={Vinyl} />
         <Route path="/vinyls">
           <VinylsList />
         </Route>
