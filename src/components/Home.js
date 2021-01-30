@@ -103,18 +103,26 @@ function SpecialGETAlerts() {
 
 //Sends a POST request
 function sendPOSTRequest(uri, body) {
+    body = JSON.parse(body);
+    fetch(uri, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body),
+    })
 }
 
 //POST
-function SpecialPOSTAlerts(props) {
+function SpecialPOSTAlerts() {
     return (
         <>
             <Alert key="1" variant="info">
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <Button className="get-post-btn" variant="info">POST</Button>
                     <span className="alert-span">/vinyls</span>
-                    <InputField func={sendPOSTRequest} uri="http://localhost:1234/vinyls" variant="info"
-                        placeholder='Example: {title: "A love supreme", author: "John Coltrane", genre: "Jazz"}' />
+                    <InputField func={sendPOSTRequest} uri="http://localhost:3000/vinyls" variant="info"
+                        placeholder='Ex: {"title": "A love supreme", "author": "John Coltrane", "genre": "Jazz"}' />
                 </div>
             </Alert>
 
@@ -122,8 +130,8 @@ function SpecialPOSTAlerts(props) {
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <Button className="get-post-btn" variant="info">POST</Button>
                     <span className="alert-span">/authors</span>
-                    <InputField func={sendPOSTRequest} uri="http://localhost:1234/authors" variant="info"
-                        placeholder='Example: {name: "John Coltrane"}' />
+                    <InputField func={sendPOSTRequest} uri="http://localhost:3000/authors" variant="info"
+                        placeholder='Ex: {"name": "John Coltrane"}' />
                 </div>
             </Alert>
 
@@ -131,8 +139,8 @@ function SpecialPOSTAlerts(props) {
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <Button className="get-post-btn" variant="info">POST</Button>
                     <span className="alert-span">/genres</span>
-                    <InputField func={sendPOSTRequest} uri="http://localhost:1234/genres" variant="info"
-                        placeholder='Example: {type: "Jazz"}' />
+                    <InputField func={sendPOSTRequest} uri="http://localhost:3000/genres" variant="info"
+                        placeholder='Ex: {"type": "Jazz"}' />
                 </div>
             </Alert>
         </>
@@ -143,7 +151,7 @@ function SpecialPOSTAlerts(props) {
 
 export function Home() {
     return (
-        <div style={{ display: "inline-block", margin: "10px" }}>
+        <div style={{ display: "inline-block", margin: "10px", width: "775px" }}>
             {
                 GETs.map((req, index) => { return (<BasicAlert req={req} index={index} />) })
             }
