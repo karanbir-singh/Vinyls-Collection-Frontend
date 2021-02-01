@@ -6,6 +6,8 @@ import { Table } from "react-bootstrap";
 
 export function GenresList() {
     const [genres, setGenres] = useState([]);
+    const urlParams = new URLSearchParams(location.search);
+    const f = urlParams.get('f');
 
     useEffect(() => {
         fetch("http://localhost:3000/genres")
@@ -13,30 +15,37 @@ export function GenresList() {
             .then(body => setGenres(body));
     }, []);
 
+    if (f === 'table') {
+        return (
+            <>
+                <h2>Elenco generi</h2>
+                <Table striped borderless hover responsive>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Genre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            genres.map((genre) => {
+                                return (
+                                    <tr>
+                                        <td>{genre.id}</td>
+                                        <td>{genre.type}</td>
+                                    </tr>
+                                );
+                            })
+                        }
+                    </tbody>
+                </Table>
+            </>
+        );
+    }
     return (
         <>
-            <h2>Elenco generi</h2>
-            {/* <pre>{JSON.stringify(genres, null, 2)}</pre> */}
-            <Table striped borderless hover responsive>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Genre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        genres.map((genre) => {
-                            return (
-                                <tr>
-                                    <td>{genre.id}</td>
-                                    <td>{genre.type}</td>
-                                </tr>
-                            );
-                        })
-                    }
-                </tbody>
-            </Table>
+            <h2>Elenco autori</h2>
+            <pre>{JSON.stringify(genres, null, 2)}</pre>
         </>
     );
 }
